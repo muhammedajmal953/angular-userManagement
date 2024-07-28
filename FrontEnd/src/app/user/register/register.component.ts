@@ -39,7 +39,9 @@ export class RegisterComponent {
 
       this.userService.registerUser(this.formData.value).subscribe({
         next: (res) => {
-
+          if(res.err){
+            alert(res.message)
+          }
           if (res.message === 'user saved successfully') {
             localStorage.setItem('token', res.token)
             this.router.navigate(['/'])

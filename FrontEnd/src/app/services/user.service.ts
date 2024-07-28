@@ -14,6 +14,10 @@ export class UserService {
     return this.http.post(`${this.api}/register`, data, this.httpOptions());
   }
 
+  loginUser(data: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.api}/login`, data, this.httpOptions());
+  }
+
 
   httpOptions() {
     const token: string = localStorage.getItem('token') ?? "";
