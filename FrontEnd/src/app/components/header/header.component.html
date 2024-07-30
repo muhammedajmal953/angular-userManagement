@@ -1,1 +1,17 @@
-<p>header works!</p>
+
+<nav class="bg-white shadow-md dark:bg-gray-800">
+  <div class="container mx-auto px-6 py-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <img class="w-auto h-8" src="https://merakiui.com/images/logo.svg" alt="Logo">
+        <span class="ml-3 text-xl font-semibold text-gray-600 dark:text-gray-200">Profile Dashboard</span>
+      </div>
+      <div class="flex space-x-4">
+        <button (click)="logout()" class="px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50">
+          Logout
+        </button>
+
+      </div>
+    </div>
+  </div>
+</nav>

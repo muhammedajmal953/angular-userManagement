@@ -1,11 +1,13 @@
 import { createReducer,on } from "@ngrx/store";
 import { User } from "../../interface/user";
-import { login, loginSuccess } from "./user.actions";
+import { getUserdata, login, loginFailed, loginSuccess } from "./user.actions";
 
-
-
-export interface UserState{
-  user: User|null
+export type loginData = {
+  email: string
+  password: string
+}
+export interface UserState {
+  user:User|null
   error: string|null
   loading: boolean
 }
@@ -28,15 +30,32 @@ export const userReducer = createReducer(
     }
 
   }),
-  
-  on(loginSuccess, (state:UserState, action) => {
+
+  on(loginSuccess, (state:UserState, {user , token}) => {
     return {
       ...state,
-      user: action.user,
+      user,
+      loading: false,
+      error: null
+    }
+  }),
+
+  on(loginFailed, (state: UserState, action: { error: any }) => {
+    return {
+      ...state,
+      user: null,
+      loading: false,
+      error: action.error
+    }
+  }),
+  on(getUserdata,(state:UserState,{user,token}) => {
+
+    return {
+      ...state,
+      user,
       loading: false,
       error: null
     }
   })
-
 )
 

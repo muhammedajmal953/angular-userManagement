@@ -4,6 +4,8 @@ import User from "../DB/models/userModel";
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 
+
+
 function generateJwtToken(
   userId: string,
   email: string,
@@ -87,3 +89,30 @@ export const loginUser = async (
     next(error);
   }
 };
+
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+
+
+  const token: string = req.headers.authorization!
+  
+  const payload: JwtPayload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload
+  
+  console.log(payload); 
+  
+  
+  const findUser = await User.findOne({ _id: payload.userId });
+   
+
+  if (!findUser) {
+    return res.status(400).json({
+      message: "user not found",
+      err: "user",
+    });
+  } else {
+    res.status(200).json({
+      message: "user found",
+      user: findUser
+    });
+  }
+  
+}
