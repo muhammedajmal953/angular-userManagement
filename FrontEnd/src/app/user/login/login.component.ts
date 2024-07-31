@@ -37,10 +37,10 @@ export class LoginComponent {
     this.store.dispatch(login(this.loginData.value))
     this.user$.subscribe((res) => {
       if (res) {
-       this.store.dispatch(loginSuccess({
-         user: res,
-         token: ''
-       }))
+        this.store.dispatch(loginSuccess({
+          user: res,
+          token: ''
+        }))
       }
     });
 

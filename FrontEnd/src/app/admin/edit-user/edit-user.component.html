@@ -1,1 +1,37 @@
-<p>edit-user works!</p>
+<div class="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-50">
+  <div class="w-full max-w-md bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div class="p-4 border-b dark:border-gray-600">
+      <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Edit Profile</h2>
+    </div>
+    <div class="p-4">
+      <form [formGroup]="editedData" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="name">Name</label>
+          <input type="text" id="name" formControlName="_name"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">Email</label>
+          <input type="email" id="email" formControlName="_email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">Old password</label>
+          <input type="password" id="oldPassword" formControlName="_oldPassword" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">new Password</label>
+          <input type="password" id="newPassword" formControlName="_newPassword" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+
+
+        <div class="mb-4">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="profilePicture">Profile Picture</label>
+          <input type="file" id="profilePicture"  (change)="loadfile($event)" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="flex justify-end mt-6">
+          <button type="button" class="px-4 py-2 mr-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-400">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

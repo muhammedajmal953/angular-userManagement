@@ -1,5 +1,5 @@
 import Express,{ Router,Request,Response } from "express";
-import { getUser, loginUser, registerUser } from "../controllers/userController";
+import { getUser, loginUser, registerUser, updateUser } from "../controllers/userController";
 
 const router: Router = Express.Router()
 
@@ -8,7 +8,9 @@ router.get('/',(req:Request,res:Response)=>{
 })
 router.post('/register', registerUser)
 router.post('/login', loginUser)
-router.get('/user',getUser)
+router.get('/user', getUser)
+router.put('/updateUser', updateUser)
+
 
 export default router
 

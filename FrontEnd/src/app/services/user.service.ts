@@ -24,6 +24,9 @@ export class UserService {
     return this.http.get(`${this.api}/user`, this.httpOptions());
   }
 
+  updateUser(data: User): Observable<any> {
+    return this.http.put(`${this.api}/updateUser`, data, this.httpOptions());
+  }
 
   httpOptions() {
     const token: string = localStorage.getItem('token') ?? "";

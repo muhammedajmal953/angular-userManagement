@@ -20,6 +20,15 @@ export const loginFailed = createAction(
 
 export const getUserdata = createAction(
   '[USER] get user data',
-  props<{ user: User , token: string}>()
+ 
+)
 
+export const getUserDataFailed = createAction(
+  '[USER] get user data failed',
+  props<{ error: any }>()
+)
+
+export const getUserDataSuccess = createAction(
+  '[USER] get user data success',
+  props<{ user: User , token: string}>()
 )

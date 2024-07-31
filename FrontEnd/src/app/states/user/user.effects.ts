@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { login, loginFailed, loginSuccess } from "./user.actions";
+import { getUserdata, getUserDataSuccess, login, loginFailed, loginSuccess } from "./user.actions";
 import { catchError, map, of, switchMap, tap } from "rxjs";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
@@ -31,5 +31,21 @@ export class UserEffects {
 
     );
   })
+  getUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(getUserdata),
+      switchMap((action) => {
+        return this.userService.getUserData().pipe(
+          map((res) => {
+            return getUserDataSuccess({ user: res.user, token: res.token })
+          }),
+          catchError((error) => {
+            return of(loginFailed({ error: error }))
+          })
+        )
+      })
+    )
+  })
+
 }
 

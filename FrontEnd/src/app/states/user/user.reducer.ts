@@ -1,6 +1,6 @@
 import { createReducer,on } from "@ngrx/store";
 import { User } from "../../interface/user";
-import { getUserdata, login, loginFailed, loginSuccess } from "./user.actions";
+import { getUserdata, getUserDataFailed, getUserDataSuccess, login, loginFailed, loginSuccess } from "./user.actions";
 
 export type loginData = {
   email: string
@@ -48,13 +48,28 @@ export const userReducer = createReducer(
       error: action.error
     }
   }),
-  on(getUserdata,(state:UserState,{user,token}) => {
+  on(getUserdata,(state:UserState) => {
 
+    return {
+      ...state,
+      loading: true,
+      error: null
+    }
+  }),
+  on (getUserDataSuccess,(state:UserState,{user,token}) => {
     return {
       ...state,
       user,
       loading: false,
       error: null
+    }
+  }),
+  on(getUserDataFailed,(state:UserState,{error}) => {
+    return {
+      ...state,
+      user: null,
+      loading: false,
+      error
     }
   })
 )
