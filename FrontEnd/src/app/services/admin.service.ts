@@ -23,7 +23,7 @@ export class AdminService {
   }
 
   editUser(data: any, id: string): Observable<any> {
-    return this.http.put(`${this.api}/users/${id}`, data, this.httpOptions());
+    return this.http.put(`${this.api}/updateUser/${id}`, data, this.httpOptions());
   }
 
   deleteUser(id: string): Observable<any> {

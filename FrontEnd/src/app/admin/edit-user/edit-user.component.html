@@ -7,25 +7,65 @@
       <form [formGroup]="editedData" (ngSubmit)="onSubmit()">
         <div class="mb-4">
           <label class="block text-sm text-gray-600 dark:text-gray-200" for="name">Name</label>
-          <input type="text" id="name" formControlName="_name"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+          <input
+            type="text"
+            id="name"
+            formControlName="_name"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+          <div *ngIf="editedData.get('_name')?.touched && editedData.get('_name')?.invalid" class="text-red-500 text-sm mt-2">
+            <div *ngIf="editedData.get('_name')?.errors?.['required']">Name is required.</div>
+            <div *ngIf="editedData.get('_name')?.errors?.['minlength']">Name must be at least 5 characters long.</div>
+          </div>
         </div>
         <div class="mb-4">
           <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">Email</label>
-          <input type="email" id="email" formControlName="_email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+          <input
+            type="email"
+            id="email"
+            formControlName="_email"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+          <div *ngIf="editedData.get('_email')?.touched && editedData.get('_email')?.invalid" class="text-red-500 text-sm mt-2">
+            <div *ngIf="editedData.get('_email')?.errors?.['required']">Email is required.</div>
+            <div *ngIf="editedData.get('_email')?.errors?.['email']">Invalid email format.</div>
+          </div>
         </div>
         <div class="mb-4">
-          <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">Old password</label>
-          <input type="password" id="oldPassword" formControlName="_oldPassword" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="oldPassword">Old Password</label>
+          <input
+            type="password"
+            id="oldPassword"
+            formControlName="_oldPassword"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+          <div *ngIf="editedData.get('_oldPassword')?.touched && editedData.get('_oldPassword')?.invalid" class="text-red-500 text-sm mt-2">
+            <div *ngIf="editedData.get('_oldPassword')?.errors?.['minlength']">Password must be at least 8 characters long.</div>
+          </div>
         </div>
         <div class="mb-4">
-          <label class="block text-sm text-gray-600 dark:text-gray-200" for="email">new Password</label>
-          <input type="password" id="newPassword" formControlName="_newPassword" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+          <label class="block text-sm text-gray-600 dark:text-gray-200" for="newPassword">New Password</label>
+          <input
+            type="password"
+            id="newPassword"
+            formControlName="_newPassword"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+          <div *ngIf="editedData.get('_newPassword')?.touched && editedData.get('_newPassword')?.invalid" class="text-red-500 text-sm mt-2">
+            <div *ngIf="editedData.get('_newPassword')?.errors?.['minlength']">Password must be at least 8 characters long.</div>
+          </div>
         </div>
-
-
         <div class="mb-4">
           <label class="block text-sm text-gray-600 dark:text-gray-200" for="profilePicture">Profile Picture</label>
-          <input type="file" id="profilePicture"  (change)="loadfile($event)" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+          <input
+            type="file"
+            id="profilePicture"
+            (change)="loadfile($event)"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+          />
+          <div *ngIf="editedData.get('_profilePic')?.touched && editedData.get('_profilePic')?.hasError('invalidExtension')" class="text-red-500 text-sm mt-2">
+            Invalid file format. Only images are allowed.
+          </div>
         </div>
         <div class="flex justify-end mt-6">
           <button type="button" class="px-4 py-2 mr-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600" (click)="closeModal()">Cancel</button>

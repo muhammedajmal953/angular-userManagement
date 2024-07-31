@@ -107,6 +107,7 @@ export const addUser = async (req: Request, res: Response, next: NextFunction) =
 }
 export const editUser=async(req:Request,res:Response,next:NextFunction)=>{
   const { id } = req.params
+  console.log(id);
   
   const { _name, _email, _oldPassword, _newPassword, _profilePic } = req.body
   try {

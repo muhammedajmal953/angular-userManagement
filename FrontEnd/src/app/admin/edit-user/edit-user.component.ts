@@ -25,8 +25,8 @@ export class EditUserComponent {
         _name: new FormControl('',[Validators.required,Validators.minLength(5)]),
         _email: new FormControl('',[Validators.required,Validators.email]),
         _profilePic: new FormControl(''),
-        _oldPassword: new FormControl(''),
-        _newPassword:new FormControl('')
+        _oldPassword: new FormControl('',[Validators.minLength(8)]),
+        _newPassword:new FormControl('',[Validators.minLength(8)])
       })
 
   }
