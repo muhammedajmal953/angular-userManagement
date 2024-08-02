@@ -97,7 +97,7 @@ export const addUser = async (req: Request, res: Response, next: NextFunction) =
         }
     
 
-    
+        
         await newUser.save();
     
         res.status(201).json({ message: 'User created successfully', user: newUser });
@@ -156,3 +156,4 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
     next(error);
   }
 }
+
